@@ -58,17 +58,17 @@ class _FirstRouteState extends State<FirstRoute> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               RowBuilder(listIndex: 0),
-              const SizedBox(
-                height: 20,
-              ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               RowBuilder(listIndex: 1),
-              const SizedBox(
-                height: 20,
-              ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               RowBuilder(listIndex: 2),
-              const SizedBox(
-                height: 20,
-              ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               RowBuilder(listIndex: 3),
             ],
           ),
@@ -112,23 +112,28 @@ class _FirstRouteState extends State<FirstRoute> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: NumberButtons.numbersButtons[listIndex]
-          .map((e) => TextButton(
-                onPressed: () {
-                  setState(() {
-                    if (inputNumber.length < 10) {
-                      inputNumber += e.number;
-                    }
-                  });
-                  if (inputNumber.length == 10 &&
-                      !allNumbers.contains(inputNumber)) {
-                    allNumbers.add(inputNumber);
-                  }
-                },
-                child: Text(
-                  e.number,
-                  style: GoogleFonts.juliusSansOne(
-                      fontSize: 50, color: Color.fromARGB(255, 49, 49, 49)),
-                ),
+          .map((e) => Column(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        if (inputNumber.length < 10) {
+                          inputNumber += e.number;
+                        }
+                      });
+                      if (inputNumber.length == 10 &&
+                          !allNumbers.contains(inputNumber)) {
+                        allNumbers.add(inputNumber);
+                      }
+                    },
+                    child: Text(
+                      e.number,
+                      style: GoogleFonts.juliusSansOne(
+                          fontSize: 50, color: Color.fromARGB(255, 49, 49, 49)),
+                    ),
+                  ),
+                  Text(e.letters,style: TextStyle(fontSize: 15),)
+                ],
               ))
           .toList(),
     );
